@@ -7,9 +7,14 @@ public class Bank : MonoBehaviour
 {
     [SerializeField] private int startingBalance = 150;
     [SerializeField] private int currentBalance;
+    
+    private static Bank instance;
+
+
+    //Properties
+    public static Bank Instance { get => instance; set => instance = value; }
     public int CurrentBalance { get { return currentBalance; } }
 
-    public static Bank instance;
 
     [SerializeField] private TextMeshProUGUI balanceText;
     
@@ -23,9 +28,9 @@ public class Bank : MonoBehaviour
 
     private void Singelton()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

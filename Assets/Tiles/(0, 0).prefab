@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 396033703977422630}
   - component: {fileID: 6796481775948651842}
   - component: {fileID: 7304369149973500937}
+  - component: {fileID: 1751923879262446711}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -180,13 +181,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114849024268279313}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ab1e6843e0063b4c8f788723a3a016b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCoordinateColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedCoordinateColor: {r: 0.09999275, g: 0, b: 1, a: 1}
+  blockedCoordinateColor: {r: 0.20733352, g: 0.24192944, b: 0.9811321, a: 1}
+--- !u!114 &1751923879262446711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114849024268279313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7351b63bafac07840a38b74af3772d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCoordinateColor: {r: 1, g: 1, b: 1, a: 1}
+  blockedCoordinateColor: {r: 0.26415092, g: 0.26016372, b: 0.26016372, a: 1}
+  exploredColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pathColor: {r: 1, g: 0.5, b: 0, a: 1}
 --- !u!1 &4893997960256405561
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaceable: 1
-  BallistaTower: {fileID: 1048411254652607966, guid: 8a965e088bae16643aab3d07ccfd5e2e, type: 3}
+  tower: {fileID: 1048411254652607966, guid: 8a965e088bae16643aab3d07ccfd5e2e, type: 3}
 --- !u!65 &8121882740297204836
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,20 +4,20 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Enemy))]
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Enemy  //MonoBehaviour
 {
     [SerializeField] private int maxHitPoints = 5;
     [SerializeField] private int difficultyramp = 1;
     private int currentHitPoints=0;
 
-    Enemy enemy;
+    //Enemy enemy;
     private void OnEnable()
     {
         currentHitPoints = 0;
     }
     private void Start()
     {
-        enemy = GetComponent<Enemy>();
+        //enemy = GetComponent<Enemy>();
     }
     private void OnParticleCollision(GameObject other)
     {
@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour
         {
             gameObject.SetActive(false);
             maxHitPoints += difficultyramp;
-            enemy.RewardGold();
+            RewardGold();
         }
     }
 }

@@ -7,12 +7,12 @@ public class Waypoint : MonoBehaviour
     [SerializeField] private bool isPlaceable;
     public bool IsPlaceable { get { return isPlaceable; } }
 
-    [SerializeField] private Tower BallistaTower;
+    [SerializeField] private Tower tower;
     private void OnMouseDown()
     {
         if (isPlaceable)
         {
-            bool isPlaced = BallistaTower.CreateTower(BallistaTower, transform.position);           
+            bool isPlaced = tower.CreateTower(tower, transform.position);           
             isPlaceable = !isPlaced; 
         }
     }

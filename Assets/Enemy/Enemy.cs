@@ -9,6 +9,6 @@ public class Enemy : MonoBehaviour
 
     public void RewardGold()
     {
-        Bank.instance.ChangeBalance(goldReward);
+        Bank.Instance.ChangeBalance(goldReward);
     }
 }
