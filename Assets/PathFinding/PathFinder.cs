@@ -17,22 +17,50 @@ public class PathFinder : MonoBehaviour
 
     private Vector2Int[] directions = { Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down };
 
-    
+    public static PathFinder instance;
+
+    public Vector2Int StartCoordinates { get => startCoordinates; }
+    public Vector2Int DestinationCoordinates { get => destinationCoordinates; }
+
+    private void Singelton()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     private void Awake()
     {
-        
+        Singelton();
+        //if you run commands below this comment on Start method, null reference exception error returns
+        grid = GridManager.Instance.Grid;
+        startNode = grid[startCoordinates];
+        destinationNode = grid[destinationCoordinates];
 
-        
     }
     void Start()
+    {       
+        GetNewPath();
+    }
+    public void NotifyReceivers()
     {
-        grid = GridManager.Instance.Grid;
+        //print("NotifyReceivers 2. step");
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
+    }
 
-        startNode = GridManager.Instance.Grid[startCoordinates];
-        destinationNode = GridManager.Instance.Grid[destinationCoordinates];
-
-        BreadthFirstSerach();
-        BuildPath();
+    public List<Node> GetNewPath()
+    {
+        return GetNewPath(startCoordinates);
+    }
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
+        GridManager.Instance.ResetNode();
+        BreadthFirstSerach(coordinates);
+        return BuildPath();
     }
 
     private void ExploreNeighbors()
@@ -64,12 +92,18 @@ public class PathFinder : MonoBehaviour
             }
         }
     }
-    private void BreadthFirstSerach()
+    private void BreadthFirstSerach(Vector2Int coordinates)
     {
+        startNode.isWalkable = true;
+        destinationNode.isWalkable = true;
+
+        frontier.Clear();
+        reached.Clear();
+
         bool isRunning = true;
 
-        frontier.Enqueue(startNode);
-        reached.Add(startCoordinates, startNode);
+        frontier.Enqueue(grid[coordinates]);
+        reached.Add(coordinates, grid[coordinates]);
 
         while (frontier.Count > 0 && isRunning)
         {
@@ -82,6 +116,24 @@ public class PathFinder : MonoBehaviour
                 isRunning = false;
             }
         }
+    }
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            bool previousState = grid[coordinates].isWalkable;
+
+            grid[coordinates].isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            if (newPath.Count <= 1)
+            {
+                GetNewPath();
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<Node> BuildPath()

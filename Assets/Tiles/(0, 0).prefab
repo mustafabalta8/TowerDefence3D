@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6796481775948651842}
   - component: {fileID: 7304369149973500937}
   - component: {fileID: 1751923879262446711}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,7 @@ MonoBehaviour:
   blockedCoordinateColor: {r: 0.26415092, g: 0.26016372, b: 0.26016372, a: 1}
   exploredColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   pathColor: {r: 1, g: 0.5, b: 0, a: 1}
+  unityGridSize: 10
 --- !u!1 &4893997960256405561
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +216,7 @@ GameObject:
   - component: {fileID: 4421644544354800386}
   - component: {fileID: 1552608365659417160}
   - component: {fileID: 2643123922078191324}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +299,7 @@ GameObject:
   - component: {fileID: 7087937045944526858}
   - component: {fileID: 5676658319605238427}
   - component: {fileID: 8121882740297204836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: (0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

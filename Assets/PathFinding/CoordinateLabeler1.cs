@@ -14,13 +14,19 @@ public class CoordinateLabeler1 : MonoBehaviour
     [SerializeField] private Color exploredColor = Color.yellow;
     [SerializeField] private Color pathColor = new Color(1f,0.5f,0f);
 
-    
+    //[SerializeField] private GridManager gridManager;
+
+    [SerializeField] private int unityGridSize = 10;
     private void Awake()
     {
         label = GetComponent<TextMeshPro>();
-        
+        //unityGridSize = GridManager.Instance.UnityGridSize;
 
         label.enabled = false;
+        
+    }
+    private void Start()
+    {
         DisplayCoordinates();
     }
     void Update()
@@ -47,7 +53,8 @@ public class CoordinateLabeler1 : MonoBehaviour
 
         Node node = GridManager.Instance.GetNode(coordinate);
         if(node==null) { return; }
-        Debug.Log(transform.parent.gameObject.name + " is isExplored: "+node.isExplored);
+
+        //Debug.Log(transform.parent.gameObject.name + " is isExplored: "+node.isExplored);
         if (!node.isWalkable)
         {
             label.color = blockedCoordinateColor;
@@ -68,8 +75,10 @@ public class CoordinateLabeler1 : MonoBehaviour
 
     private void DisplayCoordinates()
     {
-        coordinate.x = (int)(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinate.y = (int)(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
+        if (GridManager.Instance == null) { return; }
+
+        coordinate.x = (int)(transform.parent.position.x / unityGridSize);//UnityEditor.EditorSnapSettings.move.x
+        coordinate.y = (int)(transform.parent.position.z / unityGridSize);//UnityEditor.EditorSnapSettings.move.z
 
         label.text = coordinate.x + "," + coordinate.y;
     }
